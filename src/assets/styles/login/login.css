@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@500&family=Secular+One&display=swap');
+
+.textField {
+  width: 65%;
+  height: 50px;
+  background: rgb(214, 210, 210);
+  border: 1.2px solid rgb(214, 210, 210);
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 2px;
+  padding-left: 5%;
+  font-size: 16px;
+  margin-bottom: 2.5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 15%;
+}
+
+.buttonLogin {
+  color: white;
+  background: #c44c8a;
+  border: none;
+  border-radius: 10px;
+  width: 70%;
+  height: 50px;
+  font-family: 'Secular One', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+
+.rememberPassword{
+  font-family: Arial, Helvetica, sans-serif;
+  color: gray;
+  margin-top: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.formLogin {
+  height: auto;
+  padding-top: 5%;
+  width: 100%;
+}
+
+.formControlLabel {
+  padding-right: 18%;
+}
