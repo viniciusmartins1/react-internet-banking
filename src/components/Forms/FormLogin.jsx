@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from 'formik';
 import { toast } from "react-toastify";
 import { Checkbox, FormControlLabel } from '@mui/material';
@@ -9,9 +9,13 @@ import Modal from "react-modal";
 import { ValidateProps, ValidateUser } from '../../utils/login/validateProps';
 import { Warning, RememberPass, TitleModal, Description, ContainerUser, InputUser, WarningModal, Confirm } from '../../assets/styles/login/login.js';
 
-import Loading from "../Layout/Loading";
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/styles/login/login.css';
+
+import { showLoading, hideLoading } from '../../redux/actions/AppActions'
+import { loginForgotPass, loginLogin } from '../../redux/actions/LoginActions';
+import { useDispatch, useSelector } from "react-redux";
+
 
 
 Modal.setAppElement('#root');
@@ -28,11 +32,25 @@ const customStyles = {
   }
 }
 
-const FormLogin = () => {
+const FormLogin = () => { 
 
+  
   const [modalIsOpen, setIsOpen] = useState(false)
-  const [removeLoading, setRemoveLoading] = useState(true)
   const history = useHistory();
+  const dispatch = useDispatch();
+  const statusForgot = useSelector(state => state.reducerLogin.forgotPass);
+
+
+  useEffect(() => {
+    if (statusForgot) {
+      toast.success('Email enviado com sucesso!!', {
+        autoClose: 3000
+      })
+
+      dispatch(loginForgotPass(false));
+    }
+
+  }, [statusForgot])
 
   function handleOpenModel() {
     setIsOpen(true);
@@ -50,12 +68,14 @@ const FormLogin = () => {
     },
     validate: ValidateProps,
     onSubmit: values => {
+
+      dispatch(showLoading());
+
       setTimeout(() => {
-        setRemoveLoading(true);
+        dispatch(loginLogin(values.user, values.password));
+        dispatch(hideLoading());
         history.push('/');
       }, 3000)
-
-      setRemoveLoading(false);
     }
   });
 
@@ -65,10 +85,12 @@ const FormLogin = () => {
     },
     validate: ValidateUser,
     onSubmit: values => {
-      handleCloseModel();
-      toast.success('Email enviado com sucesso!!', {
-        autoClose: 3000
-      })
+      dispatch(showLoading());
+      setTimeout(() => {
+        dispatch(hideLoading());
+        dispatch(loginForgotPass(true));
+        
+      }, 3000)
     }
   })
 
@@ -156,8 +178,6 @@ const FormLogin = () => {
           <Confirm type="submit">Confirmar</Confirm>
         </form>
       </Modal>
-
-      {!removeLoading ? <Loading /> : null}
     </>
   );
 }
