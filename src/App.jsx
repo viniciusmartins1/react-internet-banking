@@ -1,5 +1,6 @@
 import Routes from "./components/Routes";
 import './assets/styles/_reset.css';
+import './assets/styles/_all.css'
 
 import Loading from "./components/Layout/Loading";
 import { useSelector } from 'react-redux'
