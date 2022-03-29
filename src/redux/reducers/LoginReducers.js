@@ -23,6 +23,12 @@ export const reducerLogin = (prevState = initialState, action) => {
         userSaved: false,
         forgotPass: action.payload.status,
       }
+    case Types.LOGOUT:
+      return {
+        ...prevState,
+        userSaved: false,
+        user: {},
+      }
     default:
       return prevState;
   }

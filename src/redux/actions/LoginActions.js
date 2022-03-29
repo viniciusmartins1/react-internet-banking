@@ -18,3 +18,13 @@ export const loginLogin = (userName, password) => {
     }
   }
 }
+
+export const logout = (status) => {
+  return {
+    type: Types.LOGOUT,
+    payload: {
+      status
+    }
+  }
+}
+
