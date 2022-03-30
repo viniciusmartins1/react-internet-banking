@@ -1,9 +1,6 @@
-import { Button, Card, CardContent, Grid, TextField, Typography } from "@mui/material";
+import { Button, Card, CardContent, Grid, TextField, Typography } from "@material-ui/core";
 import React from "react";
-import Header from "../Home/Header";
-import LateralMenu from "../Home/LateralMenu";
-import ProfileImg from "../../assets/img/perfil.png"
-import styled from "styled-components";
+
 
 const FormProfile = () => {
 
