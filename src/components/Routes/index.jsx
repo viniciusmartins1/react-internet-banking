@@ -16,7 +16,7 @@ const Routes = () => {
         <Route path="/" exact component={() => <Home />} />
         <Route path="/login" component={() => <Login />} />
         <Route path="/perfil" component={ () =><Profile />} />
-        <Route path="/cotitulares" component={ () => <CoOwners />} />
+        <Route path="/cotitulares" exact component={ () => <CoOwners />} />
         <Route path="/cotitulares/cadastrar" component={ () => <NewCoOwner />} />
         <Route path="/nao-encontrado" component={ () => <NotFound />} />
       </Switch>
