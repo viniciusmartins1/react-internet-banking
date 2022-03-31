@@ -3,10 +3,10 @@ import { useHistory, Link } from 'react-router-dom';
 import MaterialTable  from '@material-table/core';
 import ImgProfile from '../../assets/img/icon-perfil.png';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 const TitleTable = styled.h2`
   font-size: 28px;
-  text-aling: center;
 `;
 
 const NewCoOwner = styled.button`
@@ -25,28 +25,16 @@ const NewCoOwner = styled.button`
 
 const TableCoOwners = () => {
 
-
-  const data = [
-    { name: 'Vinicius', image: ImgProfile},
-    { name: 'Theo', image: ImgProfile},
-    { name: 'Breno', image: ImgProfile},
-    { name: 'Julia', image: ImgProfile},
-    { name: 'Ana', image: ImgProfile},
-    { name: 'Dora', image: ImgProfile},
-    { name: 'Alex', image: ImgProfile},
-    { name: 'Andreia', image: ImgProfile},
-    { name: 'Eduarda', image: ImgProfile},
-  ]
+  const dataCoOwners = useSelector(state => state.reducerCoOwner.coOwners);
 
   const columns = [
     {
-      title: 'Avatar',
-      field: 'image',
-      render: rowData => <img src={rowData.image} style={{width: 30, borderRadius: '50%'}}/>
+      title: 'Avatar', field: 'image',
+      render: rowData => <img src={ImgProfile} style={{width: 30, borderRadius: '50%'}}/>
     },
-    {
-      title: 'Nome', field: 'name'
-    },
+    {title: 'Nome', field: 'name'},
+    {title: 'Celular', field: 'phoneNumber'},
+    {title: 'Data de Nascimento', field: 'birthDate'},
   ]
 
   return (
@@ -59,7 +47,7 @@ const TableCoOwners = () => {
       }}>
       <MaterialTable
         title={<TitleTable>Co-Titulares</TitleTable>}
-        data={data}
+        data={dataCoOwners}
         columns={columns}
         options={{
           search: false,
