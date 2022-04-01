@@ -1,0 +1,18 @@
+.container-table-co-owners {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media screen and (max-width: 540px) {
+
+  .container-table-co-owners {
+    max-width: 400px;
+    margin-top: 90px;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+}
+
