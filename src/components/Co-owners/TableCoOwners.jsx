@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory, Link } from 'react-router-dom';
 import MaterialTable  from '@material-table/core';
 import ImgProfile from '../../assets/img/icon-perfil.png';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { requestGetAll } from '../../redux/actions/CoOwnersActions'
 
 const TitleTable = styled.h2`
   font-size: 28px;
@@ -26,6 +27,14 @@ const NewCoOwner = styled.button`
 const TableCoOwners = () => {
 
   const dataCoOwners = useSelector(state => state.reducerCoOwner.coOwners);
+  const dataLoad = useSelector(state => state.reducerCoOwner.dataLoad);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!dataLoad) {
+      dispatch(requestGetAll());
+    }
+  }, []) 
 
   const columns = [
     {

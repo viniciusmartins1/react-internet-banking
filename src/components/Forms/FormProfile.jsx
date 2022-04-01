@@ -1,8 +1,22 @@
-import { Button, Card, CardContent, Grid, TextField, Typography } from "@material-ui/core";
-import React from "react";
+import { Button, Card, CardContent, Grid, TextField, Typography, InputLabel } from "@material-ui/core";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { requestData } from "../../redux/actions/ProfileActions";
 
 
 const FormProfile = () => {
+
+  const profile = useSelector(state => state.reducerProfile.profile);
+  const dataLoad = useSelector(state => state.reducerProfile.dataLoad);
+
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!dataLoad) {
+      dispatch(requestData());
+    }
+  }, [])
 
   return (
     <div>
@@ -24,22 +38,24 @@ const FormProfile = () => {
           <form>
             <Grid container justifyContent="center" gridColumn={2} spacing={2}>
               <Grid xs={12} sm={8} item>
-                <TextField label="Nome de Usuário" placeholder="Insira seu nome de usuario" variant="outlined" fullWidth required />
+                <InputLabel shrink>Nome de Usuário</InputLabel>
+                <TextField value={profile.userName} InputProps={{ readOnly: true, }} variant="filled" fullWidth />
               </Grid>
               <Grid xs={12} sm={8} item >
-                <TextField type="email" label="Email" placeholder="Insira seu nome email" variant="outlined" fullWidth required />
+                <InputLabel shrink>Email</InputLabel>
+                <TextField type="email" InputProps={{ readOnly: true, }} value={profile.email} variant="filled" fullWidth />
               </Grid>
               <Grid xs={12} sm={8} item>
-                <TextField label="Data de Nascimento" placeholder="Insira sua data de nascimento" variant="outlined" fullWidth required />
+                <InputLabel shrink>Data de Nascimento</InputLabel>
+                <TextField InputProps={{ readOnly: true, }} value={profile.birthDate} variant="filled" fullWidth />
               </Grid>
               <Grid xs={12} sm={8} item>
-                <TextField label="Celular" placeholder="Insira seu número do celular" variant="outlined" fullWidth required />
+                <InputLabel shrink>Celular</InputLabel>
+                <TextField InputProps={{ readOnly: true, }} value={profile.phoneNumber} variant="filled" fullWidth />
               </Grid>
               <Grid xs={12} sm={8} item>
-                <TextField label="Descrição" multiline rows={8} placeholder="Insira uma descrição sobre você" variant="outlined" fullWidth required />
-              </Grid>
-              <Grid xs={12} sm={8} item>
-                <Button type="submit" variant="contained" color="primary" fullWidth>Enviar</Button>
+                <InputLabel shrink>Descrição</InputLabel>
+                <TextField InputProps={{ readOnly: true, }} value={profile.description} multiline rows={8} variant="filled" fullWidth />
               </Grid>
             </Grid>
           </form>
