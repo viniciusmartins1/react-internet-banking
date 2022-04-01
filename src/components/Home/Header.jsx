@@ -1,49 +1,12 @@
 import React, { useState } from "react";
-import styled from 'styled-components';
 import { Popover, Typography } from "@mui/material";
 import { Link, useHistory} from 'react-router-dom';
 import { showLoading, hideLoading } from '../../redux/actions/AppActions'
 import { logout } from '../../redux/actions/LoginActions'
 import { useDispatch } from "react-redux";
 import perfilImg from '../../assets/img/perfil.png';
+import { TitleLogo, Icon, ImgProfile, NavBar } from "../../assets/styles/home/home";
 
-const NavBar = styled.nav`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: linear-gradient(to right, #284fae, #c04c8b);
-  padding-left: 10%;
-  padding-right: 10%;
-  height: 7vh;
-  margin: 10px;
-  border-radius: 15px;
-`;
-
-const Icon = styled.button`
-  font-size: 24px;
-  background: none;
-  border: none; 
-  color: #FAFAFA;
-  cursor: pointer;
-`;
-
-const ImgProfile = styled.img`
-  border-radius: 50%;
-  width: 50px;
-  border: 2px solid #284fae;
-`;
-
-const Title = styled.h2`
-  font-size: 26px;
-  
-  color: #FAFAFA;
-  font-family: 'Ramaraja', serif;
-  letter-spacing: 2px;
-
-  span {
-    color: #FAFAFA;
-  }
-`;
 
 const Header = () => {
 
@@ -67,7 +30,7 @@ const Header = () => {
 
   return (
     <NavBar>
-      <Title className="logo">Internet <span>Banking</span></Title>
+      <TitleLogo className="logo">Internet <span>Banking</span></TitleLogo>
       <Icon onClick={openPopover}>
         <ImgProfile src={perfilImg} alt="" />
       </Icon>

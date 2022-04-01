@@ -1,28 +1,13 @@
 import React, { useEffect } from "react";
-import { useHistory, Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import MaterialTable  from '@material-table/core';
-import ImgProfile from '../../assets/img/icon-perfil.png';
-import styled from 'styled-components';
+import ImgProfile from '../../assets/img/perfil.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestGetAll } from '../../redux/actions/CoOwnersActions'
+import '../../assets/styles/coOwners/coOwners.css';
+import { NewCoOwner, TitleTable } from '../../assets/styles/coOwners/coOwners.js'
 
-const TitleTable = styled.h2`
-  font-size: 28px;
-`;
 
-const NewCoOwner = styled.button`
-  border: none;
-  color: white;
-  background: #c44c8a;
-  border-radius: 10px;
-  height: 45px;
-  width: 180px;
-  font-size: 16px;
-  font-weight: bold;
-  font-family: 'Open Sans', sans-serif; 
-  cursor: pointer;
-  margin-top: 5%;
-`;
 
 const TableCoOwners = () => {
 
@@ -48,12 +33,8 @@ const TableCoOwners = () => {
 
   return (
     <div
-      style={{
-        maxWidth: 900,
-        margin: "30px auto",
-        padding: "20px 5px",
-        fontFamily: 'Arial',
-      }}>
+      className="container-table-co-owners"
+      >
       <MaterialTable
         title={<TitleTable>Co-Titulares</TitleTable>}
         data={dataCoOwners}

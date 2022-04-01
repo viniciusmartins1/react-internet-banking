@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { FaDollarSign, FaCheckCircle } from 'react-icons/fa'
 import LateralMenu from "./LateralMenu";
 import logoMaster from '../../assets/img/mastercard-logo.png';
@@ -10,24 +9,7 @@ import iconeCards from '../../assets/img/two-credits.png';
 import iconeRecharge from '../../assets/img/cell-pays.png';
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-
-
-const ImgUser = styled.img`
-  height: 150px;
-  width: 150px;
-  border-radius: 50%;
-  border: 3px solid #284fae;
-`;
-
-const TitleUser = styled.h2`
-  font-size: 20px;
-  font-family: 'Open Sans', sans-serif; 
-
-  span {
-    color: #284fae;
-    font-size: 23px;
-  }
-`;
+import { ImgUser, TitleUser } from "../../assets/styles/home/home";
 
 const Content = () => {
 
