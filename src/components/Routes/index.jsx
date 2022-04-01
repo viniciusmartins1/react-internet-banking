@@ -7,17 +7,18 @@ import Login from "../../pages/Login";
 import NewCoOwner from "../../pages/NewCoOwner";
 import NotFound from "../../pages/NotFound";
 import Profile from "../../pages/Profile";
+import PrivateRoute from "./PrivateRoute";
 
 const Routes = () => {
 
   return (
     <Router>
       <Switch>
-        <Route path="/" exact component={() => <Home />} />
+        <PrivateRoute path="/" exact component={() => <Home />} />
         <Route path="/login" component={() => <Login />} />
-        <Route path="/perfil" component={ () =><Profile />} />
-        <Route path="/cotitulares" exact component={ () => <CoOwners />} />
-        <Route path="/cotitulares/cadastrar" component={ () => <NewCoOwner />} />
+        <PrivateRoute path="/perfil" component={ () =><Profile />} />
+        <PrivateRoute path="/cotitulares" exact component={ () => <CoOwners />} />
+        <PrivateRoute path="/cotitulares/cadastrar" component={ () => <NewCoOwner />} />
         <Route path="/nao-encontrado" component={ () => <NotFound />} />
       </Switch>
     </Router>
