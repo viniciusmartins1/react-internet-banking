@@ -2,7 +2,9 @@ import { Types } from '../actions/types'
 import { listCoOWners } from '../../mocks/listCoOwners'
 
 const initialState = {
-  coOwners: listCoOWners
+  coOwners: [],
+  dataLoad: false,
+  // coOwners: listCoOWners
 }
 
 export const reducerCoOwner = (prevState = initialState, action) => {
@@ -12,6 +14,12 @@ export const reducerCoOwner = (prevState = initialState, action) => {
       return {
         ...prevState,
         coOwners: [action.payload.coOwner, ...prevState.coOwners]
+      }
+    case Types.CO_OWNER_GET_ALL:
+      return {
+        ...prevState,
+        coOwners: action.payload.coOwners,
+        dataLoad: true
       }
     default:
       return prevState;

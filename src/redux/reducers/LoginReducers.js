@@ -5,6 +5,7 @@ const initialState = {
   user: {},
   userSaved: false,
   forgotPass: false,
+  isAuthenticated: false
 }
 
 export const reducerLogin = (prevState = initialState, action) => {
@@ -16,6 +17,7 @@ export const reducerLogin = (prevState = initialState, action) => {
         ...prevState,
         user: action.payload.user,
         userSaved: true,
+        isAuthenticated: true,
       }
     case Types.LOGIN_DO_FORGOT_PASS:
       return {
@@ -28,6 +30,7 @@ export const reducerLogin = (prevState = initialState, action) => {
         ...prevState,
         userSaved: false,
         user: {},
+        isAuthenticated: false,
       }
     default:
       return prevState;
