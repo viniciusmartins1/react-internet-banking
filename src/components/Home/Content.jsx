@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaDollarSign, FaCheckCircle } from 'react-icons/fa'
 import LateralMenu from "./LateralMenu";
 import logoMaster from '../../assets/img/mastercard-logo.png';
@@ -11,13 +11,31 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ImgUser, TitleUser } from "../../assets/styles/home/home";
 
+
+const customStyles = {
+  balancePositive: {
+    background: "#32CD32"
+  },
+  balanceNegative: {
+    background: "#DC143C"
+  }
+}
+
 const Content = () => {
 
   const username = useSelector(state => state.reducerLogin.user.userName);
+  const [ balance, setBanlance ] = useState(1000)
   const history = useHistory();
 
   const redirectCowoners = () => {
     history.push('/cotitulares/cadastrar');
+  }
+
+  const getModifier = () => {
+    if(balance > 0) return customStyles.balancePositive
+    if (balance < 0) return customStyles.balanceNegative
+    
+    return null;
   }
 
 
@@ -31,10 +49,10 @@ const Content = () => {
         <LateralMenu />
       </div>
       <div className="grid-cards-main">
-        <div className="card-balance">
+        <div className="card-balance" style={getModifier()}>
           <h4>Saldo</h4>
           <i><FaDollarSign /></i>
-          <h2>R$ <span>1000,00</span></h2>
+          <h2>R$ <span>{balance}</span></h2>
         </div>
         <div className="card">
           <h4>Status da conta</h4>
