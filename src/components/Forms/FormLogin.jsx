@@ -1,40 +1,50 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from 'formik';
 import { toast } from "react-toastify";
-import { Checkbox, FormControlLabel } from '@mui/material';
+import { Checkbox, FormControlLabel, FormHelperText } from '@mui/material';
 import { useHistory } from "react-router-dom";
-import { FaUser, FaLock } from 'react-icons/fa';
+import { FaUser, FaEyeSlash, FaEye } from 'react-icons/fa';
 import Modal from "react-modal";
 
 import { ValidateProps, ValidateUser } from '../../utils/login/validateProps';
-import { Warning, RememberPass, TitleModal, Description, ContainerUser, InputUser, WarningModal, Confirm } from '../../assets/styles/login/login.js';
+import { RememberPass, TitleModal, Description, ContainerUser, InputUser, WarningModal, Confirm, customStyles } from '../../assets/styles/login/login.js';
 
 import 'react-toastify/dist/ReactToastify.css';
-import '../../assets/styles/login/login.css';
 
 import { showLoading, hideLoading } from '../../redux/actions/AppActions'
 import { loginForgotPass, loginLogin } from '../../redux/actions/LoginActions';
 import { useDispatch, useSelector } from "react-redux";
+
+import IconButton from '@mui/material/IconButton';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import { Button } from "@material-ui/core";
 
 
 
 Modal.setAppElement('#root');
 toast.configure();
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  }
-}
 
-const FormLogin = () => { 
 
-  
+const FormLogin = () => {
+
+  const [values, setValues] = useState({
+    showPassword: false,
+  });
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   const [modalIsOpen, setIsOpen] = useState(false)
   const history = useHistory();
   const dispatch = useDispatch();
@@ -89,46 +99,62 @@ const FormLogin = () => {
       setTimeout(() => {
         dispatch(hideLoading());
         dispatch(loginForgotPass(true));
-        
+
       }, 3000)
     }
   })
 
   return (
     <>
-      <form className="formLogin" onSubmit={formik.handleSubmit}>
+      <form  onSubmit={formik.handleSubmit}>
 
-        <div className="textField">
-          <FaUser />
-          <input
-            placeholder={"Usuario"}
+        <FormControl sx={{ m: 1, width: '33ch' }} variant="outlined">
+          
+          <OutlinedInput
             id="user"
-            name="user"
-            type="text"
+            type='text'
             {...formik.getFieldProps('user')}
+            error={formik.touched.user && formik.errors.user ? (
+              true
+            ) : null}
+            placeholder="Nome de usuário"
           />
-        </div>
-        {formik.touched.user && formik.errors.user ? (
-          <Warning>{formik.errors.user}</Warning>
-        ) : null}
+          {formik.touched.user && formik.errors.user ? (
+            <FormHelperText>{formik.errors.user}</FormHelperText>
+          ) : null}
+        </FormControl>
 
-        <div className="textField">
-          <FaLock />
-          <input
+        <FormControl sx={{ m: 1, width: '33ch' }} variant="outlined">
+          <OutlinedInput
             id="password"
-            name="password"
-            type="password"
-            placeholder="Senha"
+            type={values.showPassword ? 'text' : 'password'}
             {...formik.getFieldProps('password')}
+            error={formik.touched.password && formik.errors.password ? (
+              true
+            ) : null}
+
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <FaEye /> : <FaEyeSlash />}
+                </IconButton>
+              </InputAdornment>
+            }
+            placeholder="Senha"
           />
-        </div>
-        {formik.touched.password && formik.errors.password ? (
-          <Warning>{formik.errors.password}</Warning>
-        ) : null}
+          {formik.touched.password && formik.errors.password ? (
+            <FormHelperText>{formik.errors.password}</FormHelperText>
+          ) : null}
+        </FormControl>
 
         <FormControlLabel
           label={<RememberPass>Lembrar minha senha?</RememberPass>}
-          className="formControlLabel"
+          style={customStyles.checkRememberPass}
           control={
             <Checkbox
               name="rememberPass"
@@ -139,15 +165,18 @@ const FormLogin = () => {
           }
         />
 
-        <button className="buttonLogin" type="submit">LOGIN</button>
+        <FormControl sx={{ m: 1, width: '33ch' }} variant="outlined">
+          <Button style={customStyles.buttonLogin} type="submit">LOGIN</Button>
+        </FormControl>
 
       </form>
-      <button
-        className="rememberPassword"
+
+      <Button
+        style={customStyles.buttonForgotPass}
         onClick={handleOpenModel}
       >
         <p>Esqueci minha senha</p>
-      </button>
+      </Button>
 
       <Modal
         isOpen={modalIsOpen}
