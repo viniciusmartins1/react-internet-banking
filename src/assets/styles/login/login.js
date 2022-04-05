@@ -1,5 +1,37 @@
 import styled from 'styled-components'
 
+
+export const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+  buttonLogin: {
+    color: "white",
+    background: "#c44c8a",
+    height: "50px",
+    fontSize: "16px",
+    fontFamily: 'Secular One',
+    marginTop: "5%"
+  },
+  buttonForgotPass: {
+    color: "gray",
+    background: "none",
+    border: "none",
+    fontSize: "12px",
+    fontFamily: 'Arial',
+    marginTop: "5%"
+  },
+  checkRememberPass: {
+    paddingRight: "18%",
+    marginTop: 10
+  }
+}
+
 export const Container = styled.div`
   background: linear-gradient(#c04c8b, #284fae);
   display: flex;
