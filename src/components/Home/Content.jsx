@@ -14,10 +14,12 @@ import { ImgUser, TitleUser } from "../../assets/styles/home/home";
 
 const customStyles = {
   balancePositive: {
-    background: "#32CD32"
+    background: "#32CD32",
+    borderLeft: "8px solid #32CD32"
   },
   balanceNegative: {
-    background: "#DC143C"
+    background: "#DC143C",
+    borderLeft: "8px solid #DC143C"
   }
 }
 
@@ -45,9 +47,9 @@ const Content = () => {
         <ImgUser src={perfilImg} alt="Imagem do Profile" />
         <TitleUser>Bem-vindo, <span>{userName}</span></TitleUser>
       </div>
-      <div className="grid-sidebar">
+      {/* <div className="grid-sidebar">
         <LateralMenu />
-      </div>
+      </div> */}
       <div className="grid-cards-main">
         <div className="card-balance" style={getModifier()}>
           <h4>Saldo</h4>

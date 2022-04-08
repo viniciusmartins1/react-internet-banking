@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from 'formik';
 import { toast } from "react-toastify";
-import { Checkbox, FormControlLabel, FormHelperText } from '@mui/material';
+import { Checkbox, FormControlLabel, FormHelperText } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import { FaUser, FaEyeSlash, FaEye } from 'react-icons/fa';
 import Modal from "react-modal";
@@ -15,10 +15,11 @@ import { showLoading, hideLoading } from '../../redux/actions/AppActions'
 import { loginForgotPass, postLogin, loginFailed, loginSuccess } from '../../redux/actions/LoginActions';
 import { useDispatch, useSelector } from "react-redux";
 
-import IconButton from '@mui/material/IconButton';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import Box from "@material-ui/core/Box"
 import { Button } from "@material-ui/core";
 
 
@@ -125,68 +126,72 @@ const FormLogin = () => {
 
   return (
     <>
-      <form  onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit}>
 
-        <FormControl sx={{ m: 1, width: '33ch' }} variant="outlined">
-          
-          <OutlinedInput
-            id="user"
-            type='text'
-            {...formik.getFieldProps('user')}
-            error={formik.touched.user && formik.errors.user ? (
-              true
-            ) : null}
-            placeholder="Nome de usuário"
-          />
-          {formik.touched.user && formik.errors.user ? (
-            <FormHelperText>{formik.errors.user}</FormHelperText>
-          ) : null}
-        </FormControl>
+        <Box sx={{
+          width: 250
+        }}>
+          <FormControl fullWidth margin="normal" variant="outlined">
 
-        <FormControl sx={{ m: 1, width: '33ch' }} variant="outlined">
-          <OutlinedInput
-            id="password"
-            type={values.showPassword ? 'text' : 'password'}
-            {...formik.getFieldProps('password')}
-            error={formik.touched.password && formik.errors.password ? (
-              true
-            ) : null}
-
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {values.showPassword ? <FaEye /> : <FaEyeSlash />}
-                </IconButton>
-              </InputAdornment>
-            }
-            placeholder="Senha"
-          />
-          {formik.touched.password && formik.errors.password ? (
-            <FormHelperText>{formik.errors.password}</FormHelperText>
-          ) : null}
-        </FormControl>
-
-        <FormControlLabel
-          label={<RememberPass>Lembrar minha senha?</RememberPass>}
-          style={customStyles.checkRememberPass}
-          control={
-            <Checkbox
-              name="rememberPass"
-              color="success"
-              size="small"
-              {...formik.getFieldProps('rememberPass')}
+            <OutlinedInput
+              id="user"
+              type='text'
+              {...formik.getFieldProps('user')}
+              error={formik.touched.user && formik.errors.user ? (
+                true
+              ) : null}
+              placeholder="Nome de usuário"
             />
-          }
-        />
+            {formik.touched.user && formik.errors.user ? (
+              <FormHelperText>{formik.errors.user}</FormHelperText>
+            ) : null}
+          </FormControl>
 
-        <FormControl sx={{ m: 1, width: '33ch' }} variant="outlined">
-          <Button style={customStyles.buttonLogin} type="submit">LOGIN</Button>
-        </FormControl>
+          <FormControl margin="normal" variant="outlined">
+            <OutlinedInput
+              id="password"
+              type={values.showPassword ? 'text' : 'password'}
+              {...formik.getFieldProps('password')}
+              error={formik.touched.password && formik.errors.password ? (
+                true
+              ) : null}
+
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {values.showPassword ? <FaEye /> : <FaEyeSlash />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              placeholder="Senha"
+            />
+            {formik.touched.password && formik.errors.password ? (
+              <FormHelperText>{formik.errors.password}</FormHelperText>
+            ) : null}
+          </FormControl>
+
+          <FormControlLabel
+            label={<RememberPass>Lembrar minha senha?</RememberPass>}
+            style={customStyles.checkRememberPass}
+            control={
+              <Checkbox
+                name="rememberPass"
+                color="success"
+                size="small"
+                {...formik.getFieldProps('rememberPass')}
+              />
+            }
+          />
+
+          <FormControl fullWidth variant="outlined">
+            <Button style={customStyles.buttonLogin} type="submit">LOGIN</Button>
+          </FormControl>
+        </Box>
 
       </form>
 
@@ -209,7 +214,31 @@ const FormLogin = () => {
         </Description>
 
         <form onSubmit={formikPass.handleSubmit}>
-          <ContainerUser>
+          <Box sx={{
+            width: 350,
+        }}>
+            <FormControl fullWidth margin="normal" variant="outlined">
+              <OutlinedInput
+                id="userName"
+                {...formikPass.getFieldProps('userName')}
+                error={formikPass.touched.userName && formikPass.errors.userName ? true : null}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <FaUser />
+                  </InputAdornment>
+                }
+                placeholder="Nome de Usuário"
+              />
+              {formikPass.touched.userName && formikPass.errors.userName ? (
+                <FormHelperText>{formikPass.errors.userName}</FormHelperText>
+              ) : null}
+            </FormControl>
+
+            <FormControl fullWidth={false} margin="normal" variant="outlined">
+              <Button style={customStyles.buttonConfirmModal} type="submit">Confirmar</Button>
+            </FormControl>
+          </Box>
+          {/* <ContainerUser>
             <FaUser />
             <InputUser
               type="text"
@@ -221,9 +250,8 @@ const FormLogin = () => {
           </ContainerUser>
           {formikPass.touched.userName && formikPass.errors.userName ? (
             <WarningModal>{formikPass.errors.userName}</WarningModal>
-          ) : null}
+          ) : null} */}
 
-          <Confirm type="submit">Confirmar</Confirm>
         </form>
       </Modal>
     </>
