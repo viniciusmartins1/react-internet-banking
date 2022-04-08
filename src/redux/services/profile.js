@@ -3,11 +3,12 @@ import { Types } from '../actions/types'
 
 import { getAll } from '../actions/ProfileActions'
 
-import { api } from '../../services'
+import { getDataProfile } from '../../services/profileService'
 
 function* getDataRequest() {
-  const response = yield call(api, "profile");
-  yield put(getAll(response.data));
+  const response = yield call(getDataProfile);
+  console.log(response.data.data)
+  yield put(getAll(response.data.data));
 }
 
 function* watchRequestGetData() {
