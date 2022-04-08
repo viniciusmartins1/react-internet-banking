@@ -10,12 +10,39 @@ export const loginForgotPass = (status) => {
   }
 }
 
-export const loginLogin = (userName, password) => {
+export const loginLogin = (user) => {
   return {
     type: Types.LOGIN_DO_LOGIN,
     payload: {
-      user: { userName, password }
+      user
     }
+  }
+}
+
+export const loginFailed = (failed) => {
+  return {
+    type: Types.LOGIN_FAILED,
+    payload: {
+      failed
+    }
+  }
+}
+
+export const loginSuccess = (success) => {
+  return {
+    type: Types.LOGIN_SUCCESS,
+    payload: {
+      success
+    }
+  }
+}
+
+export const postLogin = (userName, password) => {
+  console.log('reducerPostLogin ' + userName)
+  return {
+    type: Types.LOGIN_POST_LOGIN,
+    userName,
+    password
   }
 }
 

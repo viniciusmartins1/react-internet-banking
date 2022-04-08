@@ -5,7 +5,9 @@ const initialState = {
   user: {},
   userSaved: false,
   forgotPass: false,
-  isAuthenticated: false
+  isAuthenticated: false,
+  loginFailed: false,
+  loginSuccess: false
 }
 
 export const reducerLogin = (prevState = initialState, action) => {
@@ -18,6 +20,18 @@ export const reducerLogin = (prevState = initialState, action) => {
         user: action.payload.user,
         userSaved: true,
         isAuthenticated: true,
+        loginFailed: false,
+        loginSuccess: true
+      }
+    case Types.LOGIN_FAILED:
+      return {
+        ...prevState,
+        loginFailed: action.payload.failed,
+      }
+    case Types.LOGIN_SUCCESS:
+      return {
+        ...prevState,
+        loginSuccess: action.payload.success,
       }
     case Types.LOGIN_DO_FORGOT_PASS:
       return {
@@ -31,6 +45,7 @@ export const reducerLogin = (prevState = initialState, action) => {
         userSaved: false,
         user: {},
         isAuthenticated: false,
+        loginFailed: false
       }
     default:
       return prevState;

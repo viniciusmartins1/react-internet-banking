@@ -1,11 +1,27 @@
 import { Types } from './types'
 
-export const createCoOwner = (coOwner) => {
+export const newCoOwnerSuccess = (success) => {
   return {
-    type: Types.CREATE_CO_OWNER,
+    type: Types.CO_OWNER_NEW_SUCCESS,
     payload: {
-      coOwner
+      success
     }
+  }
+}
+
+export const newCoOwnerFailed = (failed) => {
+  return {
+    type: Types.CO_OWNER_NEW_FAILED,
+    payload: {
+      failed
+    }
+  }
+}
+
+export const postCoOwner = (coOwner) => {
+  return {
+    type: Types.CO_OWNER_POST,
+    coOwner,
   }
 }
 
