@@ -1,20 +1,18 @@
 import { Card, CardContent, Grid, TextField, Typography, InputLabel } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import InputMask from 'react-input-mask';
 import { requestData } from "../../redux/actions/ProfileActions";
 
 
 const FormProfile = () => {
 
   const profile = useSelector(state => state.reducerProfile.profile);
-  const dataLoad = useSelector(state => state.reducerProfile.dataLoad);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!dataLoad) {
-      dispatch(requestData());
-    }
+    dispatch(requestData());
   }, [])
 
   return (
@@ -38,7 +36,7 @@ const FormProfile = () => {
             <Grid container justifyContent="center" gridColumn={2} spacing={2}>
               <Grid xs={12} sm={8} item>
                 <InputLabel shrink>Nome de Usuário</InputLabel>
-                <TextField value={profile.userName} InputProps={{ readOnly: true, }} variant="filled" fullWidth />
+                <TextField value={profile.nome} InputProps={{ readOnly: true, }} variant="filled" fullWidth />
               </Grid>
               <Grid xs={12} sm={8} item >
                 <InputLabel shrink>Email</InputLabel>
@@ -46,15 +44,24 @@ const FormProfile = () => {
               </Grid>
               <Grid xs={12} sm={8} item>
                 <InputLabel shrink>Data de Nascimento</InputLabel>
-                <TextField InputProps={{ readOnly: true, }} value={profile.birthDate} variant="filled" fullWidth />
+                <TextField type="date" value={profile.data_nasc} InputProps={{ readOnly: true, }} variant="filled" fullWidth />
               </Grid>
               <Grid xs={12} sm={8} item>
                 <InputLabel shrink>Celular</InputLabel>
-                <TextField InputProps={{ readOnly: true, }} value={profile.phoneNumber} variant="filled" fullWidth />
+                <InputMask
+                  mask="(99) 99999-9999"
+                  value={profile.celular}
+                >
+                  {() => <TextField
+                    InputProps={{ readOnly: true, }}
+                    variant="filled"
+                    fullWidth
+                  />}
+                </InputMask>
               </Grid>
               <Grid xs={12} sm={8} item>
                 <InputLabel shrink>Descrição</InputLabel>
-                <TextField InputProps={{ readOnly: true, }} value={profile.description} multiline rows={8} variant="filled" fullWidth />
+                <TextField InputProps={{ readOnly: true, }} value={profile.descricao} multiline rows={8} variant="filled" fullWidth />
               </Grid>
             </Grid>
           </form>

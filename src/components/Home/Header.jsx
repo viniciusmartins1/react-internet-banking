@@ -24,6 +24,7 @@ const Header = () => {
     setTimeout(() => {
       dispatch(hideLoading());
       dispatch(logout(true))
+      localStorage.removeItem('token');
       history.push('/login');
     }, 3000)
   }

@@ -23,7 +23,7 @@ const customStyles = {
 
 const Content = () => {
 
-  const username = useSelector(state => state.reducerLogin.user.userName);
+  const userName = useSelector(state => state.reducerLogin.user.userName);
   const [ balance, setBanlance ] = useState(1000)
   const history = useHistory();
 
@@ -43,7 +43,7 @@ const Content = () => {
     <div className="container">
       <div className="grid-profile-name">
         <ImgUser src={perfilImg} alt="Imagem do Profile" />
-        <TitleUser>Bem-vindo, <span>{username}</span></TitleUser>
+        <TitleUser>Bem-vindo, <span>{userName}</span></TitleUser>
       </div>
       <div className="grid-sidebar">
         <LateralMenu />

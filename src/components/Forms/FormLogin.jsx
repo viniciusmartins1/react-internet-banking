@@ -12,7 +12,7 @@ import { RememberPass, TitleModal, Description, ContainerUser, InputUser, Warnin
 import 'react-toastify/dist/ReactToastify.css';
 
 import { showLoading, hideLoading } from '../../redux/actions/AppActions'
-import { loginForgotPass, loginLogin } from '../../redux/actions/LoginActions';
+import { loginForgotPass, postLogin, loginFailed, loginSuccess } from '../../redux/actions/LoginActions';
 import { useDispatch, useSelector } from "react-redux";
 
 import IconButton from '@mui/material/IconButton';
@@ -49,6 +49,8 @@ const FormLogin = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const statusForgot = useSelector(state => state.reducerLogin.forgotPass);
+  const loginFail = useSelector(state => state.reducerLogin.loginFailed);
+  const loginSucces = useSelector(state => state.reducerLogin.loginSuccess);
 
 
   useEffect(() => {
@@ -56,11 +58,29 @@ const FormLogin = () => {
       toast.success('Email enviado com sucesso!!', {
         autoClose: 3000
       })
-
       dispatch(loginForgotPass(false));
     }
 
   }, [statusForgot])
+
+  useEffect(() => {
+    if (loginFail) {
+      toast.error('Falha ao fazer login!!', {
+        autoClose: 2000
+      })
+      dispatch(loginFailed(false))
+    }
+  }, [loginFail])
+
+  useEffect(() => {
+    if (loginSucces) {
+      toast.success('Login efetuado com sucesso!!', {
+        autoClose: 2000
+      })
+      history.push('/');
+      dispatch(loginSuccess(false))
+    }
+  }, [loginSucces])
 
   function handleOpenModel() {
     setIsOpen(true);
@@ -82,9 +102,8 @@ const FormLogin = () => {
       dispatch(showLoading());
 
       setTimeout(() => {
-        dispatch(loginLogin(values.user, values.password));
+        dispatch(postLogin(values.user, values.password));
         dispatch(hideLoading());
-        history.push('/');
       }, 3000)
     }
   });

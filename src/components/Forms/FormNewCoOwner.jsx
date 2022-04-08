@@ -1,18 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Card, CardContent, Grid, TextField, Typography } from "@material-ui/core";
 import { useFormik } from 'formik';
 import InputMask from 'react-input-mask';
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { showLoading, hideLoading } from '../../redux/actions/AppActions'
-import { createCoOwner } from '../../redux/actions/CoOwnersActions'
+import { newCoOwnerSuccess, postCoOwner, newCoOwnerFailed } from '../../redux/actions/CoOwnersActions'
 import { ValidatePropsCoOwner } from '../../utils/coOwners/validateProps'
+import { toast } from "react-toastify";
 
+
+const onlyNumbers = (str) => str.replace(/[^0-9]/g, '');
+
+toast.configure();
 
 const FormNewCoOwner = () => {
 
   const history = useHistory();
   const dispatch = useDispatch();
+  const newSuccess = useSelector(state => state.reducerCoOwner.newSuccess)
+  const newFailed = useSelector(state => state.reducerCoOwner.newFailed)
+
+  useEffect(() => {
+    if (newSuccess) {
+      toast.success('Co-Titular cadastrado com sucesso!!', {
+        autoClose: 2000
+      })
+      dispatch(newCoOwnerSuccess(false));
+      history.push('/cotitulares');
+    }
+  }, [newSuccess])
+  
+  useEffect(() => {
+    if (newFailed) {
+      toast.error('Erro ao cadastrar novo Co-Titular!!', {
+        autoClose: 2000
+      })
+      dispatch(newCoOwnerFailed(false));
+    }
+  }, [newFailed])
 
   const formik = useFormik({
     initialValues: {
@@ -20,15 +46,25 @@ const FormNewCoOwner = () => {
       cpf: '',
       birthDate: '',
       phoneNumber: '',
+      email: '',
+      description: '',
     },
     validate: ValidatePropsCoOwner,
     onSubmit: values => {
+      const data = {
+        nome: values.name,
+        cpf: onlyNumbers(values.cpf),
+        dataNasc: values.birthDate,
+        celular: onlyNumbers(values.phoneNumber),
+        email: values.email,
+        descricao: values.description
+      }
+
       dispatch(showLoading());
 
       setTimeout(() => {
-        dispatch(createCoOwner(values));
+        dispatch(postCoOwner(data));
         dispatch(hideLoading());
-        history.push('/cotitulares');
       }, 2000)
     }
   });
@@ -38,7 +74,7 @@ const FormNewCoOwner = () => {
       <Card style={{
         maxWidth: 900,
         margin: "30px auto",
-        maxHeight: 700,
+        maxHeight: 850,
         padding: "20px 5px",
       }}>
         <CardContent>
@@ -64,6 +100,21 @@ const FormNewCoOwner = () => {
                   ) : null}
                   helperText={formik.touched.name && formik.errors.name ? (
                     formik.errors.name
+                  ) : null}
+                />
+              </Grid>
+              <Grid xs={12} sm={8} item>
+                <TextField
+                  label="Email"
+                  placeholder="Insira o email do Co-titular"
+                  variant="outlined"
+                  fullWidth
+                  {...formik.getFieldProps('email')}
+                  error={formik.touched.email && formik.errors.email ? (
+                    true
+                  ) : null}
+                  helperText={formik.touched.email && formik.errors.email ? (
+                    formik.errors.email
                   ) : null}
                 />
               </Grid>
@@ -125,6 +176,23 @@ const FormNewCoOwner = () => {
                     ) : null}
                   />}
                 </InputMask>
+              </Grid>
+              <Grid xs={12} sm={8} item>
+                <TextField
+                  label="Descrição"
+                  placeholder="Insira uma descrição para o Co-titular"
+                  variant="outlined"
+                  multiline
+                  rows={8}
+                  fullWidth
+                  {...formik.getFieldProps('description')}
+                  error={formik.touched.description && formik.errors.description ? (
+                    true
+                  ) : null}
+                  helperText={formik.touched.description && formik.errors.description ? (
+                    formik.errors.description
+                  ) : null}
+                />
               </Grid>
               <Grid xs={12} sm={8} item>
                 <Button
