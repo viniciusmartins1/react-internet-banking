@@ -12,7 +12,19 @@ export const ValidatePropsCoOwner = values => {
     errors.name = 'Deve conter apenas letras';
   }
 
-  // 
+   
+  if (!values.description) {
+    errors.description = 'Obrigatório';
+  } 
+  
+  if (!values.email) {
+    errors.email = 'Obrigatório';
+  } else if (
+    !/\S+@\S+\.\S+/.test(values.email)
+  ) {
+    errors.email = 'Email inválido';
+  }
+
   if (!values.cpf) {
     errors.cpf = 'Obrigatório';
   } else if (
