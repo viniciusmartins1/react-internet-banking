@@ -13,13 +13,13 @@ export const ImgUser = styled.img`
 `;
 
 export const TitleUser = styled.h2`
-  font-size: 20px;
+  font-size: 18px;
   font-family: 'Open Sans', sans-serif; 
   transition: all .5s;
 
   span {
     color: #284fae;
-    font-size: 23px;
+    font-size: 20px;
   }
 `;
 
@@ -28,11 +28,11 @@ export const NavBar = styled.nav`
   align-items: center;
   justify-content: space-between;
   background: linear-gradient(to right, #284fae, #c04c8b);
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 13%;
+  padding-right: 13%;
   height: 7vh;
-  margin: 10px;
-  border-radius: 15px;
+  margin: 3px 5px 10px 5px;
+  border-radius: 10px;
 `;
 
 export const Icon = styled.button`
@@ -50,11 +50,11 @@ export const ImgProfile = styled.img`
 `;
 
 export const TitleLogo = styled.h2`
-  font-size: 26px;
+  font-size: 23px;
   
   color: #FAFAFA;
-  font-family: 'Ramaraja', serif;
-  letter-spacing: 2px;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 3px;
 
   span {
     color: #FAFAFA;
@@ -62,14 +62,15 @@ export const TitleLogo = styled.h2`
 `;
 
 export const TitleLogoColor = styled.h2`
-  font-size: 32px;
+  font-size: 28px;
   background-image: linear-gradient(to right, #284fae, #c04c8b);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: black;
-  font-family: 'Ramaraja', serif;
-  letter-spacing: 2px;
+  // font-family: 'Ramaraja', serif;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 3px;
   padding-bottom: 5%;
 
   span {

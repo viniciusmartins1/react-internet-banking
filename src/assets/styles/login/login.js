@@ -16,7 +16,8 @@ export const customStyles = {
     height: "50px",
     fontSize: "16px",
     fontFamily: 'Secular One',
-    marginTop: "5%"
+    marginTop: "5%",
+    // width: "100px"
   },
   buttonForgotPass: {
     color: "gray",
@@ -27,8 +28,21 @@ export const customStyles = {
     marginTop: "5%"
   },
   checkRememberPass: {
-    paddingRight: "18%",
-    marginTop: 10
+    paddingRight: "20%",
+    paddingLeft: "0%",
+    marginTop: 5
+  },
+  buttonConfirmModal: {
+    background: "#248eff",
+    width: 150,
+    height: "40px",
+    border: "none",
+    borderRadius: "3px",
+    color: "white",
+    fontSize: "15px",
+    fontFamily: "'Open Sans', sans-serif",
+    display: "block",
+    marginTop: 5
   }
 }
 
@@ -85,13 +99,13 @@ export const RememberPass = styled.p`
 export const TitleModal = styled.h2`
   font-size: 20px;
   margin-bottom: 3%;
-  font-family: Arial;
+  font-family: Open Sans;
   color: #c44c8a;
 `
 
 export const Description = styled.p`
   font-size: 16px;
-  font-family: Arial;
+  font-family: Open Sans;
   margin-bottom: 3%;
 `;
 
