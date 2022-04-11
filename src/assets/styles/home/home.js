@@ -5,6 +5,7 @@ export const ImgUser = styled.img`
   width: 150px;
   border-radius: 50%;
   transition: all .5s ease;
+  margin-bottom: 5px;
 
   &:hover {
     border: none;
@@ -28,8 +29,8 @@ export const NavBar = styled.nav`
   align-items: center;
   justify-content: space-between;
   background: linear-gradient(to right, #284fae, #c04c8b);
-  padding-left: 13%;
-  padding-right: 13%;
+  padding-left: 1%;
+  padding-right: 5%;
   height: 7vh;
   margin: 3px 5px 10px 5px;
   border-radius: 10px;
@@ -46,11 +47,11 @@ export const Icon = styled.button`
 export const ImgProfile = styled.img`
   border-radius: 50%;
   width: 50px;
-  border: 2px solid #284fae;
+  margin-top: 5.5px;
 `;
 
 export const TitleLogo = styled.h2`
-  font-size: 23px;
+  font-size: 22px;
   
   color: #FAFAFA;
   font-family: 'Inter', sans-serif;

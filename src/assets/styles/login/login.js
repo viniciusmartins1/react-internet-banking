@@ -2,14 +2,6 @@ import styled from 'styled-components'
 
 
 export const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
   buttonLogin: {
     color: "white",
     background: "#c44c8a",
@@ -17,7 +9,6 @@ export const customStyles = {
     fontSize: "16px",
     fontFamily: 'Secular One',
     marginTop: "5%",
-    // width: "100px"
   },
   buttonForgotPass: {
     color: "gray",
@@ -33,16 +24,31 @@ export const customStyles = {
     marginTop: 5
   },
   buttonConfirmModal: {
-    background: "#248eff",
+    background: "#4CAF50",
     width: 150,
     height: "40px",
     border: "none",
     borderRadius: "3px",
     color: "white",
-    fontSize: "15px",
+    fontSize: "14px",
     fontFamily: "'Open Sans', sans-serif",
-    display: "block",
-    marginTop: 5
+    marginLeft: "200%"
+  },
+  warningHelpText: {
+    color: "red",
+    fontSize: "12px",
+  }
+}
+
+export const customStylesModal = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    width: 450,
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
   }
 }
 
@@ -76,22 +82,6 @@ export const Title = styled.h1`
   padding-top: 7%;
 `;
 
-export const Logo = styled.img`
-  width: 30%;
-  display: block;
-  object-fit: contain;
-`;
-
-export const Warning = styled.span`
-  font-size: 14px;
-  color: #DC143C;
-  font-family: Arial;
-  padding-top: 5px;
-  padding-bottom: 10px;
-  display: block;
-  text-align: left;
-  margin-left: 15%;
-`;
 export const RememberPass = styled.p`
   font-size: 14px;
 `;
@@ -104,45 +94,7 @@ export const TitleModal = styled.h2`
 `
 
 export const Description = styled.p`
-  font-size: 16px;
+  font-size: 14px;
   font-family: Open Sans;
   margin-bottom: 3%;
-`;
-
-export const ContainerUser = styled.div`
-  width: 60%;
-  height: 40px;
-  border: 1.2px solid rgb(214, 210, 210);
-  font-family: Arial, Helvetica, sans-serif;
-  border-radius: 2px;
-  margin: auto 0px;
-  padding-left: 2%;
-  display: flex;
-  align-items: center;
-`;
-
-export const InputUser = styled.input` 
-margin-left: 3%;
-`;
-
-export const WarningModal = styled.span`
-  font-size: 14px;
-  color: #DC143C;
-  font-family: Arial;
-  padding-top: 5px;
-  display: block;
-  text-align: left;
-  margin-left: 0%;
-`;
-
-export const Confirm = styled.button`
-  background: #248eff;
-  width: 20%;
-  height: 30px;
-  border: none;
-  border-radius: 3px;
-  color: white;
-  font-size: 16px;
-  display: block;
-  margin-top: 5%;
 `;
