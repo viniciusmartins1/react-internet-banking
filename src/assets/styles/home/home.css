@@ -63,15 +63,21 @@
   }
 
   .sidebar ul span {
-    width: 55%;
+    width: 35%;
     font-size: 16px;
     padding-left: 5%;
     line-height: 45px;
     margin-top: 3%;
+    justify-content: center;
+    align-content: center;
   }
 
   .sidebar ul span i {
-    font-size: 16px;
+    font-size: 20px;
+  }
+
+  .sidebar ul span p {
+    display: none;
   }
 }
 
@@ -85,20 +91,28 @@
   .sidebar ul li {
     display: block;
     float: left;
-    margin-left: 8%;
+    margin-left: 16%;
     margin-top: 8%;
   }
 
   .sidebar ul span {
-    width: 125%;
+    width: 200%;
     font-size: 16px;
-    padding-left: 15%;
+    /* padding: 15%; */
+    /* padding-right: 25%; */
     line-height: 35px;
     display: flex;
+    justify-content: center;
+    align-content: center;
   }
 
   .sidebar ul span i {
-    font-size: 15px;
+    font-size: 20px;
+    padding-left: 12%;
+  }
+
+  .sidebar ul span p {
+    display: none;
   }
 
 }
@@ -371,12 +385,53 @@
 
 @media screen and (max-width: 540px){
 
+  .container{
+    background-image: none;
+  }
+
+  .card-balance h4 {
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 13px;
+    display: inline-block;
+     
+   }
+   
+   .card-balance h2 {
+     font-size: 20px;
+   }
+   
+   .card-balance h2 span {
+     font-size: 30px;
+   }
+   
+   .card-balance i {
+     font-size: 20px;
+   }
+
   .card {
     width: 350px;
     height: 120px;
     border-radius: 20px;
     margin-bottom: 10%;
   }
+
+  .card h4 {
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 13px;
+    display: inline-block;
+   }
+   
+   .card h2 span {
+     font-size: 28px;
+   }
+   
+   .card i {
+     font-size: 20px;
+     margin-left: 90%;
+     color: green;
+   }
   
   .card-balance {
     width: 350px;
@@ -397,11 +452,15 @@
   .grid-cards-main {
     grid-column: 1/5;
     grid-row: 2/5;
+
+    padding-top: 0%;
   }
 
   .grid-card {
     grid-column: 1/5;
     grid-row: 5/5;
+
+    margin-right: 40px;
   }
 
   .card-card-container{

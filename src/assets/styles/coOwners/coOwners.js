@@ -3,6 +3,10 @@ import styled from "styled-components"
 
 export const TitleTable = styled.h2`
   font-size: 28px;
+
+  @media (max-width: 540px) {
+    font-size: 23px;
+  }
 `;
 
 export const NewCoOwner = styled.button`
@@ -17,4 +21,10 @@ export const NewCoOwner = styled.button`
   font-family: 'Open Sans', sans-serif; 
   cursor: pointer;
   margin-top: 5%;
+
+  @media (max-width: 540px) {
+    height: 35px;
+    width: 180px;
+    font-size: 14px;
+  }
 `;

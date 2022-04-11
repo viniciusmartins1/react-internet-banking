@@ -48,6 +48,10 @@ export const ImgProfile = styled.img`
   border-radius: 50%;
   width: 50px;
   margin-top: 5.5px;
+
+  @media (max-width: 540px) {
+    width: 40px;
+  }
 `;
 
 export const TitleLogo = styled.h2`
@@ -59,6 +63,12 @@ export const TitleLogo = styled.h2`
 
   span {
     color: #FAFAFA;
+  }
+
+  @media (max-width: 540px) {
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-left: 5px;
   }
 `;
 
