@@ -55,7 +55,7 @@ const FormNewCoOwner = () => {
         nome: values.name,
         cpf: onlyNumbers(values.cpf),
         dataNasc: values.birthDate,
-        celular: onlyNumbers(values.phoneNumber),
+        celular: values.phoneNumber,
         email: values.email,
         descricao: values.description
       }

@@ -38,7 +38,6 @@ export const loginSuccess = (success) => {
 }
 
 export const postLogin = (userName, password) => {
-  console.log('reducerPostLogin ' + userName)
   return {
     type: Types.LOGIN_POST_LOGIN,
     userName,

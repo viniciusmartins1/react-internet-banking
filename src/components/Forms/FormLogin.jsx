@@ -7,7 +7,7 @@ import { FaUser, FaEyeSlash, FaEye } from 'react-icons/fa';
 import Modal from "react-modal";
 
 import { ValidateProps, ValidateUser } from '../../utils/login/validateProps';
-import { RememberPass, TitleModal, Description, ContainerUser, InputUser, WarningModal, Confirm, customStyles } from '../../assets/styles/login/login.js';
+import { RememberPass, TitleModal, Description, customStyles, customStylesModal } from '../../assets/styles/login/login.js';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -143,7 +143,7 @@ const FormLogin = () => {
               placeholder="Nome de usuário"
             />
             {formik.touched.user && formik.errors.user ? (
-              <FormHelperText>{formik.errors.user}</FormHelperText>
+              <FormHelperText style={customStyles.warningHelpText}>{formik.errors.user}</FormHelperText>
             ) : null}
           </FormControl>
 
@@ -171,7 +171,7 @@ const FormLogin = () => {
               placeholder="Senha"
             />
             {formik.touched.password && formik.errors.password ? (
-              <FormHelperText>{formik.errors.password}</FormHelperText>
+              <FormHelperText style={customStyles.warningHelpText}>{formik.errors.password}</FormHelperText>
             ) : null}
           </FormControl>
 
@@ -205,54 +205,45 @@ const FormLogin = () => {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={handleCloseModel}
-        style={customStyles}
+        style={customStylesModal}
       >
-        <TitleModal>Recuperação de senha</TitleModal>
-        <Description>
-          Preencha o campo com seu nome de usuario,
-          e te enviaremos um email de recuperação
-        </Description>
-
-        <form onSubmit={formikPass.handleSubmit}>
-          <Box sx={{
-            width: 350,
+        <Box sx={{
+          width: 450,
         }}>
-            <FormControl fullWidth margin="normal" variant="outlined">
-              <OutlinedInput
-                id="userName"
-                {...formikPass.getFieldProps('userName')}
-                error={formikPass.touched.userName && formikPass.errors.userName ? true : null}
-                startAdornment={
-                  <InputAdornment position="start">
-                    <FaUser />
-                  </InputAdornment>
-                }
-                placeholder="Nome de Usuário"
-              />
-              {formikPass.touched.userName && formikPass.errors.userName ? (
-                <FormHelperText>{formikPass.errors.userName}</FormHelperText>
-              ) : null}
-            </FormControl>
+          <TitleModal>Recuperação de senha</TitleModal>
+          <Description>
+            Preencha o campo com seu nome de usuario,
+            e te enviaremos um email de recuperação
+          </Description>
 
-            <FormControl fullWidth={false} margin="normal" variant="outlined">
-              <Button style={customStyles.buttonConfirmModal} type="submit">Confirmar</Button>
-            </FormControl>
-          </Box>
-          {/* <ContainerUser>
-            <FaUser />
-            <InputUser
-              type="text"
-              placeholder="Usuario"
-              id="userName"
-              name="userName"
-              {...formikPass.getFieldProps('userName')}
-            />
-          </ContainerUser>
-          {formikPass.touched.userName && formikPass.errors.userName ? (
-            <WarningModal>{formikPass.errors.userName}</WarningModal>
-          ) : null} */}
+          <form onSubmit={formikPass.handleSubmit}>
+            <Box sx={{
+              width: 450,
+            }}>
+              <FormControl fullWidth margin="normal" variant="outlined">
+                <OutlinedInput
+                  id="userName"
+                  {...formikPass.getFieldProps('userName')}
+                  error={formikPass.touched.userName && formikPass.errors.userName ? true : null}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <FaUser />
+                    </InputAdornment>
+                  }
+                  placeholder="Nome de Usuário"
+                />
+                {formikPass.touched.userName && formikPass.errors.userName ? (
+                  <FormHelperText style={customStyles.warningHelpText}>{formikPass.errors.userName}</FormHelperText>
+                ) : null}
+              </FormControl>
 
-        </form>
+              <FormControl margin="normal" variant="outlined">
+                <Button style={customStyles.buttonConfirmModal} type="submit">Confirmar</Button>
+              </FormControl>
+            </Box>
+          </form>
+        </Box>
+
       </Modal>
     </>
   );
